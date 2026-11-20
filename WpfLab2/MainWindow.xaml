@@ -451,35 +451,86 @@
 
                         <GroupBox Header="UpdateSourceTrigger — когда передавать изменения в источник">
                             <Grid>
-                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                                <StackPanel Margin="6">
-                                    <TextBlock Text="PropertyChanged — сразу при вводе" FontWeight="Bold"/>
-                                    <TextBox Text="{Binding PropertyChangedText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Источник:" Margin="4,4,4,0" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding PropertyChangedText}" TextWrapping="Wrap" Margin="4"/>
-                                </StackPanel>
-                                <StackPanel Grid.Column="1" Margin="6">
-                                    <TextBlock Text="LostFocus — при потере фокуса" FontWeight="Bold"/>
-                                    <TextBox Text="{Binding LostFocusText, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
-                                    <TextBlock Text="Источник:" Margin="4,4,4,0" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding LostFocusText}" TextWrapping="Wrap" Margin="4"/>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1" Margin="6">
-                                    <TextBlock Text="Default — значение по умолчанию для TextBox" FontWeight="Bold"/>
-                                    <TextBox Text="{Binding DefaultTriggerText, Mode=TwoWay, UpdateSourceTrigger=Default}"/>
-                                    <TextBlock Text="Источник:" Margin="4,4,4,0" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding DefaultTriggerText}" TextWrapping="Wrap" Margin="4"/>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1" Grid.Column="1" Margin="6">
-                                    <TextBlock Text="Explicit — только по команде UpdateSource()" FontWeight="Bold"/>
-                                    <TextBox x:Name="ExplicitBindingTextBox" Text="{Binding ExplicitText, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
-                                    <Button Content="Подтвердить ввод (UpdateSource)"
-                                            Command="{Binding CommitExplicitBindingCommand}"
-                                            CommandParameter="{Binding ElementName=ExplicitBindingTextBox}"
-                                            HorizontalAlignment="Left"/>
-                                    <TextBlock Text="Источник:" Margin="4,4,4,0" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding ExplicitText}" TextWrapping="Wrap" Margin="4"/>
-                                </StackPanel>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- PropertyChanged -->
+                                <GroupBox Header="1. PropertyChanged"
+                  Grid.Row="0" Grid.Column="0"
+                  Margin="6">
+                                    <StackPanel Margin="8">
+                                        <TextBlock Text="Обновление сразу при вводе"
+                           TextWrapping="Wrap"/>
+                                        <TextBox Text="{Binding PropertyChangedText,
+                    Mode=TwoWay,
+                    UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock Text="Значение источника:"/>
+                                        <TextBlock Text="{Binding PropertyChangedText}"
+                           TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <!-- LostFocus -->
+                                <GroupBox Header="2. LostFocus"
+                  Grid.Row="0" Grid.Column="1"
+                  Margin="6">
+                                    <StackPanel Margin="8">
+                                        <TextBlock Text="Обновление при потере фокуса"
+                           TextWrapping="Wrap"/>
+                                        <TextBox Text="{Binding LostFocusText,
+                    Mode=TwoWay,
+                    UpdateSourceTrigger=LostFocus}"/>
+                                        <TextBlock Text="Значение источника:"/>
+                                        <TextBlock Text="{Binding LostFocusText}"
+                           TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <!-- Default -->
+                                <GroupBox Header="3. Default"
+                  Grid.Row="1" Grid.Column="0"
+                  Margin="6">
+                                    <StackPanel Margin="8">
+                                        <TextBlock Text="Стандартное поведение TextBox"
+                           TextWrapping="Wrap"/>
+                                        <TextBox Text="{Binding DefaultTriggerText,
+                    Mode=TwoWay,
+                    UpdateSourceTrigger=Default}"/>
+                                        <TextBlock Text="Значение источника:"/>
+                                        <TextBlock Text="{Binding DefaultTriggerText}"
+                           TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <!-- Explicit -->
+                                <GroupBox Header="4. Explicit"
+                  Grid.Row="1" Grid.Column="1"
+                  Margin="6">
+                                    <StackPanel Margin="8">
+                                        <TextBlock Text="Обновление после подтверждения"
+                           TextWrapping="Wrap"/>
+
+                                        <TextBox x:Name="ExplicitBindingTextBox"
+                         Text="{Binding ExplicitText,
+                         Mode=TwoWay,
+                         UpdateSourceTrigger=Explicit}"/>
+
+                                        <Button Content="Подтвердить ввод"
+                        Command="{Binding CommitExplicitBindingCommand}"
+                        CommandParameter="{Binding ElementName=ExplicitBindingTextBox}"/>
+
+                                        <TextBlock Text="Значение источника:"/>
+                                        <TextBlock Text="{Binding ExplicitText}"
+                           TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </GroupBox>
                             </Grid>
                         </GroupBox>
 
